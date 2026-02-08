@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notch | Artisan Soft Drinks Cafe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4d2e;
+            --secondary: #4f772d;
+            --accent: #ff6b35;
+            --light: #f8f4e8;
+            --dark: #0d1f14;
+            --cream: #faf7f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 244, 232, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(26, 77, 46, 0.1);
+            animation: slideDown 0.8s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 5%;
+            background: linear-gradient(135deg, var(--cream) 0%, #e8f5e9 100%);
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(79, 119, 45, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.08) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-30px) scale(1.05);
+            }
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .hero-text .tagline {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .hero-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+            opacity: 0.8;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.8s both;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+        
+        .hero-image {
+            position: relative;
+            animation: fadeIn 1.2s ease 0.5s both;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .drink-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .drink-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            animation: scaleIn 0.6s ease both;
+        }
+        
+        .drink-card:nth-child(1) { animation-delay: 0.7s; }
+        .drink-card:nth-child(2) { animation-delay: 0.85s; }
+        .drink-card:nth-child(3) { animation-delay: 1s; }
+        .drink-card:nth-child(4) { animation-delay: 1.15s; }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .drink-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+        
+        .drink-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .drink-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .drink-card p {
+            font-size: 0.9rem;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 8rem 5%;
+            background: white;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 5rem;
+            opacity: 0.8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .feature-card:nth-child(1) { animation-delay: 0.2s; }
+        .feature-card:nth-child(2) { animation-delay: 0.4s; }
+        .feature-card:nth-child(3) { animation-delay: 0.6s; }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: var(--light);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            transition: all 0.4s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+        
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            line-height: 1.7;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+        
+        /* Menu Section */
+        .menu {
+            padding: 8rem 5% 4rem;
+            background: linear-gradient(to bottom, white, var(--light));
+        }
+        
+        .menu-category {
+            max-width: 1200px;
+            margin: 0 auto 6rem;
+        }
+        
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeInScale 0.8s ease forwards;
+        }
+        
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+        .menu-item:nth-child(6) { animation-delay: 0.6s; }
+        .menu-item:nth-child(7) { animation-delay: 0.7s; }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .menu-item:hover .menu-image img {
+            transform: scale(1.1);
+        }
+        
+        /* Coffee cup - brown gradient overlay */
+        .coffee-cup {
+            background: linear-gradient(135deg, #6f4e37, #8b6f47);
+        }
+        
+        .coffee-cup::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(111, 78, 55, 0.3), rgba(139, 111, 71, 0.3));
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Specialty cup - purple/pink gradient overlay */
+        .specialty-cup {
+            background: linear-gradient(135deg, #9b59b6, #e74c3c);
+        }
+        
+        .specialty-cup::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.25), rgba(231, 76, 60, 0.25));
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        /* Refresher cup - green/yellow gradient overlay */
+        .refresher-cup {
+            background: linear-gradient(135deg, #27ae60, #f39c12);
+        }
+        
+        .refresher-cup::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.25), rgba(243, 156, 18, 0.25));
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .menu-image::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+        
+        .menu-content {
+            padding: 2rem;
+        }
+        
+        .menu-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-content .price {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .menu-content p {
+            color: var(--dark);
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 8rem 5%;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .contact .section-title {
+            color: white;
+        }
+        
+        .contact .section-subtitle {
+            color: var(--light);
+        }
+        
+        .contact-info {
+            max-width: 800px;
+            margin: 3rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-item {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .contact-item:nth-child(1) { animation-delay: 0.2s; }
+        .contact-item:nth-child(2) { animation-delay: 0.4s; }
+        .contact-item:nth-child(3) { animation-delay: 0.6s; }
+        
+        .contact-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .contact-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+        }
+        
+        footer p {
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+            }
+            
+            .drink-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">NOTCH</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Refresh Your Day at Notch</h1>
+                <p class="tagline">Artisan Soft Drinks Crafted with Care</p>
+                <p>Experience the perfect blend of flavor and refreshment. Our handcrafted soft drinks are made with premium ingredients, bringing you unique taste experiences in every sip.</p>
+                <a href="#menu" class="cta-button">Explore Our Menu</a>
+            </div>
+            <div class="hero-image">
+                <div class="drink-showcase">
+                    <div class="drink-card">
+                        <div class="drink-icon">🍋</div>
+                        <h3>Citrus Burst</h3>
+                        <p>Zesty & Fresh</p>
+                    </div>
+                    <div class="drink-card">
+                        <div class="drink-icon">🍓</div>
+                        <h3>Berry Bliss</h3>
+                        <p>Sweet & Smooth</p>
+                    </div>
+                    <div class="drink-card">
+                        <div class="drink-icon">🥭</div>
+                        <h3>Tropical Twist</h3>
+                        <p>Exotic & Bold</p>
+                    </div>
+                    <div class="drink-card">
+                        <div class="drink-icon">🍊</div>
+                        <h3>Orange Sunrise</h3>
+                        <p>Bright & Vibrant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="about" class="features">
+        <h2 class="section-title">Why Choose Notch?</h2>
+        <p class="section-subtitle">Quality and care in every glass</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <h3>All Natural</h3>
+                <p>We use only the finest natural ingredients with no artificial flavors or preservatives. Pure refreshment, naturally crafted.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Handcrafted Daily</h3>
+                <p>Each drink is freshly prepared by our skilled team using traditional methods combined with innovative techniques.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💚</div>
+                <h3>Locally Sourced</h3>
+                <p>Supporting local farmers and suppliers, we bring you the freshest ingredients from our community to your glass.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <h2 class="section-title">Our Menu</h2>
+        <p class="section-subtitle">Handcrafted beverages for every mood</p>
+        
+        <!-- Coffee Category -->
+        <div class="menu-category">
+            <h3 class="category-title">☕ Coffee Classics</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-image coffee-cup">
+                        <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400&h=400&fit=crop" alt="Iced Latte">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Iced Latte</h3>
+                        <p class="price">$4.50</p>
+                        <p>Smooth espresso with chilled milk over ice. Cool and creamy perfection.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image coffee-cup">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=400&fit=crop" alt="Cappuccino">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Cappuccino</h3>
+                        <p class="price">$4.00</p>
+                        <p>Rich espresso topped with velvety steamed milk foam. A classic favorite.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image coffee-cup">
+                        <img src="https://images.unsplash.com/photo-1551030173-122aabc4489c?w=400&h=400&fit=crop" alt="Americano">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Americano</h3>
+                        <p class="price">$3.50</p>
+                        <p>Bold espresso diluted with hot water. Simple, strong, and satisfying.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image coffee-cup">
+                        <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&h=400&fit=crop" alt="Mocha">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Mocha</h3>
+                        <p class="price">$5.00</p>
+                        <p>Espresso and chocolate blended with steamed milk. Sweet indulgence.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image coffee-cup">
+                        <img src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&h=400&fit=crop" alt="Flat White">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Flat White</h3>
+                        <p class="price">$4.25</p>
+                        <p>Microfoam milk poured over double espresso. Smooth and sophisticated.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image coffee-cup">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop" alt="Cold Brew Coffee">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Cold Brew Coffee</h3>
+                        <p class="price">$4.50</p>
+                        <p>Slow-steeped for 12 hours. Naturally sweet and incredibly smooth.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image coffee-cup">
+                        <img src="https://images.unsplash.com/photo-1599961796337-e5047f0a70e0?w=400&h=400&fit=crop" alt="Iced Caramel Latte">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Iced Caramel Latte</h3>
+                        <p class="price">$5.25</p>
+                        <p>Iced latte swirled with rich caramel. Sweet, smooth, and irresistible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Specialty Category -->
+        <div class="menu-category">
+            <h3 class="category-title">✨ Specialty Beverages</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-image specialty-cup">
+                        <img src="https://images.unsplash.com/photo-1536013564862-2fa91a6e8579?w=400&h=400&fit=crop" alt="Matcha Latte">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Matcha Latte</h3>
+                        <p class="price">$5.50</p>
+                        <p>Premium Japanese matcha whisked with steamed milk. Earthy and energizing.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image specialty-cup">
+                        <img src="https://images.unsplash.com/photo-1578899952107-9d9d67b6f9bb?w=400&h=400&fit=crop" alt="Chai Latte">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Chai Latte</h3>
+                        <p class="price">$4.75</p>
+                        <p>Aromatic spiced tea with steamed milk. Warm and comforting.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image specialty-cup">
+                        <img src="https://images.unsplash.com/photo-1542990253-a781e04c0082?w=400&h=400&fit=crop" alt="Hot Chocolate">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Hot Chocolate</h3>
+                        <p class="price">$4.50</p>
+                        <p>Rich Belgian chocolate with steamed milk. Pure chocolate bliss.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image specialty-cup">
+                        <img src="https://images.unsplash.com/photo-1556742212-5b321f3c261b?w=400&h=400&fit=crop" alt="Iced Chocolate">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Iced Chocolate</h3>
+                        <p class="price">$4.75</p>
+                        <p>Chilled chocolate milk over ice. Refreshingly sweet and creamy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Refreshers Category -->
+        <div class="menu-category">
+            <h3 class="category-title">🍋 Fresh Refreshers</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-image refresher-cup">
+                        <img src="https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9e?w=400&h=400&fit=crop" alt="Fresh Lemonade">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Fresh Lemonade</h3>
+                        <p class="price">$3.50</p>
+                        <p>Hand-squeezed lemons with a hint of sweetness. Classic refreshment.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image refresher-cup">
+                        <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=400&fit=crop" alt="Mint Lemonade">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Mint Lemonade</h3>
+                        <p class="price">$4.00</p>
+                        <p>Fresh lemonade infused with garden mint. Cool and invigorating.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image refresher-cup">
+                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=400&fit=crop" alt="Peach Iced Tea">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Peach Iced Tea</h3>
+                        <p class="price">$4.25</p>
+                        <p>Sweet peach perfectly paired with premium black tea. Summer in a glass.</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-image refresher-cup">
+                        <img src="https://images.unsplash.com/photo-1499638309848-e9968540da83?w=400&h=400&fit=crop" alt="Lemon Iced Tea">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Lemon Iced Tea</h3>
+                        <p class="price">$4.00</p>
+                        <p>Refreshing tea with a zesty lemon twist. Light and revitalizing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Visit Us Today</h2>
+        <p class="section-subtitle">We'd love to serve you</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h4>Location</h4>
+                <p>123 Refresh Street<br>Downtown District</p>
+            </div>
+            <div class="contact-item">
+                <h4>Hours</h4>
+                <p>Mon-Fri: 8AM - 8PM<br>Sat-Sun: 9AM - 9PM</p>
+            </div>
+            <div class="contact-item">
+                <h4>Contact</h4>
+                <p>Phone: (555) 123-4567<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f777a7373705f71706b7c777c7e797a317c7072">[email&#160;protected]</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
